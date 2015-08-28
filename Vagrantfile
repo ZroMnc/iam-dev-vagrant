@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
         sudo apt-get install -y unzip
         sudo apt-get install -y python3-pip
         sudo pip3 install --upgrade stups
+        sudo pip3 install --upgrade token
         sudo apt-get install -y golang golang-tools
     SHELL
    end
