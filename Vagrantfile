@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
     dev.vm.network :private_network, ip: "192.168.33.15"
     dev.vm.hostname = "dev.redpanda.com"
     dev.vm.synced_folder "files/", "/files" 
+    dev.vm.synced_folder "/Users/cgmv/.ssh", "/home/vagrant/.ssh"
     dev.vm.provision "shell", path: "prepare.sh"
     dev.vm.provision :shell, path: "bootstrap.sh"
 
@@ -29,6 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
         sudo pip3 install --upgrade stups
         sudo pip3 install --upgrade token
         sudo apt-get install -y golang golang-tools
+        sudo apt-get install openjdk-7-jre-headless
     SHELL
    end
 end
