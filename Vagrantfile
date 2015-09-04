@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
    c.vm.define :dev do |dev|
     dev.vm.box = "ubuntu/trusty64"
     dev.vm.network :private_network, ip: "192.168.33.15"
+    dev.ssh.forward_agent = true
     dev.vm.hostname = "dev.redpanda.com"
     dev.vm.synced_folder "files/", "/files" 
     dev.vm.provision "shell", path: "prepare.sh"
