@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 apt-get update
-apt-get install -y unattended-upgrades software-properties-common openjdk-7-jre-headless
+apt-get install -y unattended-upgrades software-properties-common openjdk-7-jre-headless tomcat7
 # [+] Common Files Done
 apt-get update
 # [+] Java Environment
