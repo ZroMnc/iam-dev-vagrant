@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
     dev.vm.hostname = "dev.redpanda.com"
     dev.vm.synced_folder "files/", "/files" 
     dev.vm.provision "shell", path: "prepare.sh"
-    dev.vm.provision :shell, path: "bootstrap.sh"
+    dev.vm.provision "shell", path: "bootstrap.sh"
 
     dev.vm.provision "shell", inline: <<-SHELL
         sudo apt-get install -y unattended-upgrades 
@@ -32,5 +32,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
         sudo apt-get install -y golang golang-tools
         sudo apt-get install openjdk-7-jre-headless
     SHELL
+   end
+
+   c.vm.define :am do |am|
+    am.vm.box = "ubuntu/trusty64"
+    am.vm.network :private_network, ip: "192.168.33.16"
+    am.ssh.forward_agent = true
+    am.vm.hostname = "am.redpanda.com"
+    am.vm.synced_folder "files/", "/files" 
+    am.vm.provision "shell", path: "prepare.sh"
+    am.vm.provision "shell", path: "ambuild.sh"
    end
 end
