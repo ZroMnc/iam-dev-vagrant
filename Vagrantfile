@@ -34,6 +34,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
     SHELL
    end
 
+   c.vm.define "kafka" do |kafka|
+    kafka.vm.box = "ubuntu/trusty64"
+    kafka.vm.network :private_network, ip: "192.168.33.17"
+    kafka.ssh.forward_agent = true
+    kafka.vm.hostname = "kafka.redpanda.com"
+    kafka.vm.synced_folder "files/", "/files" 
+    kafka.vm.provision "shell", path: "prepare.sh"
+   end
+
    c.vm.define :am do |am|
     am.vm.box = "ubuntu/trusty64"
     am.vm.network :private_network, ip: "192.168.33.16"
