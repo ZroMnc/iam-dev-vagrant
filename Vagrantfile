@@ -30,7 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |c|
         sudo pip3 install --upgrade stups
         sudo pip3 install --upgrade token
         sudo apt-get install -y golang golang-tools
-        sudo apt-get install openjdk-7-jre-headless
+        sudo apt-get install -y openjdk-7-jre-headless
+        sudo apt-get install -y awscli
     SHELL
    end
 
